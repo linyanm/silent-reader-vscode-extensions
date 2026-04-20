@@ -1,0 +1,147 @@
+{
+  "name": "silent-reader-vscode-extensions",
+  "displayName": "Silent Reader",
+  "description": "在 VS Code 中直接阅读本地 TXT 小说，支持内联翻页、章节跳转和阅读进度保存。",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.116.0",
+    "node": ">=24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linyanm/silent-reader-vscode-extensions.git"
+  },
+  "homepage": "https://github.com/linyanm/silent-reader-vscode-extensions#readme",
+  "bugs": {
+    "url": "https://github.com/linyanm/silent-reader-vscode-extensions/issues"
+  },
+  "publisher": "linyanm",
+  "icon": "assets/icon.png",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "reader",
+    "novel",
+    "txt",
+    "ebook",
+    "book",
+    "reading",
+    "inline",
+    "chapter",
+    "progress",
+    "focus",
+    "chinese"
+  ],
+  "galleryBanner": {
+    "color": "#084878",
+    "theme": "light"
+  },
+  "markdown": "github",
+  "qna": false,
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "silent-reader-vscode-extensions.selectNovel",
+        "title": "Silent Reader: Select Novel"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.toggleReading",
+        "title": "Silent Reader: Toggle Reading"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.closeReading",
+        "title": "Silent Reader: Close Reading"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.jumpToChapter",
+        "title": "Silent Reader: Jump To Chapter"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.jumpToChapterPercent",
+        "title": "Silent Reader: Jump To Chapter Percent"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.nextPage",
+        "title": "Silent Reader: Next Page"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.previousPage",
+        "title": "Silent Reader: Previous Page"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.openSettings",
+        "title": "Silent Reader: Open Settings"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "silent-reader-vscode-extensions.nextPage",
+        "key": "ctrl+alt+right",
+        "mac": "cmd+alt+right",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "silent-reader-vscode-extensions.previousPage",
+        "key": "ctrl+alt+left",
+        "mac": "cmd+alt+left",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Silent Reader",
+      "properties": {
+        "silentReader.novelPath": {
+          "type": "string",
+          "default": "",
+          "description": "txt 小说文件路径。也可以通过命令 Silent Reader: Select Novel 选择。"
+        },
+        "silentReader.maxCharsPerLine": {
+          "type": "number",
+          "default": 80,
+          "minimum": 1,
+          "description": "小说每行最多展示的近似视觉宽度。中文通常按 2、英文数字通常按 1 估算。"
+        },
+        "silentReader.showControlLine": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否显示底部翻页按钮行。默认开启。"
+        },
+        "silentReader.showTopControlLine": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否显示顶部操作按钮行（close、chapter、progress）。默认开启。"
+        },
+        "silentReader.showProgressLine": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否展示顶部阅读进度行。默认开启。"
+        },
+        "silentReader.insertedLines": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "description": "从当前光标行开始展示的小说行数。"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "package": "vsce package",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.116.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.9.1",
+    "eslint": "^9.39.3"
+  }
+}
