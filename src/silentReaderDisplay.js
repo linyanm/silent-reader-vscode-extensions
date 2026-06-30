@@ -39,7 +39,9 @@ function applyDecorations(reader, editor = vscode.window.activeTextEditor) {
 	}
 
 	const targetLine = getDisplayAnchorLine(reader, editor.document, displayLines.length);
+	const renderableLineCount = Math.max(editor.document.lineCount - targetLine, 0);
 	const decorations = displayLines
+		.slice(0, renderableLineCount)
 		.map((line, index) => {
 			const documentLine = editor.document.lineAt(targetLine + index);
 
